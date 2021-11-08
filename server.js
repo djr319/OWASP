@@ -51,7 +51,7 @@ MongoClient.connect(db, (err, db) => {
     app.use(helmet.contentSecurityPolicy()); //csp deprecated
 
     // Allow communication only on HTTPS
-    app.use(helmet.hsts());
+      app.use(helmet.hsts());
 
     // TODO: Add another vuln: https://github.com/helmetjs/helmet/issues/26
     // Enable XSS filter in IE (On by default)
@@ -93,9 +93,9 @@ MongoClient.connect(db, (err, db) => {
         // Fix for A3 - XSS
         // TODO: Add "maxAge"
         cookie: {
-            httpOnly: true
-            // Remember to start an HTTPS server to get this working
-            // secure: true
+          httpOnly: true
+          // Remember to start an HTTPS server to get this working
+          secure: true
         }
         */
 

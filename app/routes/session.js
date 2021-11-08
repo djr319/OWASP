@@ -64,10 +64,10 @@ function SessionHandler(db) {
                     // Fix for A1 - 3 Log Injection - encode/sanitize input for CRLF Injection
                     // that could result in log forging:
                     // - Step 1: Require a module that supports encoding
-                    // const ESAPI = require('node-esapi');
+                    const ESAPI = require('node-esapi');
                     // - Step 2: Encode the user input that will be logged in the correct context
                     // following are a few examples:
-                    // console.log('Error: attempt to login with invalid user: %s', ESAPI.encoder().encodeForHTML(userName));
+                    console.log('Error: attempt to login with invalid user: %s', ESAPI.encoder().encodeForHTML(userName));
                     // console.log('Error: attempt to login with invalid user: %s', ESAPI.encoder().encodeForJavaScript(userName));
                     // console.log('Error: attempt to login with invalid user: %s', ESAPI.encoder().encodeForURL(userName));
                     // or if you know that this is a CRLF vulnerability you can target this specifically as follows:
@@ -106,7 +106,7 @@ function SessionHandler(db) {
             // Fix the problem by regenerating a session in each login
             // by wrapping the below code as a function callback for the method req.session.regenerate()
             // i.e:
-            // `req.session.regenerate(() => {})`
+            `req.session.regenerate(() => {})`
             req.session.userId = user._id;
             return res.redirect(user.isAdmin ? "/benefits" : "/dashboard")
         });
